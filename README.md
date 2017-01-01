@@ -1,7 +1,7 @@
 # js-shortcut
 JavaScript utility for keyboard shortcuts.
 
-##utility functions
+##Utility functions
 1. **create** - utility to create shortcuts
 	<pre>
 	// create SINGLE shortcut
@@ -68,6 +68,10 @@ JavaScript utility for keyboard shortcuts.
 	<pre>
 	viralShortcut.enable();
 	</pre>
+
+## Demo page
+* **[Demo page on GitHub](https://virallalakia.github.io/js-shortcut/)**
+
 
 ## Dependency
 * **[jQuery](https://jquery.com/)** - write less, do more
