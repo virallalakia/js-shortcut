@@ -11,61 +11,63 @@ JavaScript utility for keyboard shortcuts.
 
 ##Utility functions (Syntax and Usage)
 1. **create** - utility to create shortcuts
-	```
-	* Create SINGLE shortcut
-	  Syntax: viralShortcut.create(shortcutString, handlerFunction[, delete old shortcuts=false]);
-	```javascript
-	// create SINGLE shortcut and PRESERVE already created shortcuts
-	// example:
-	viralShortcut.create('shift + 1', function () {
-		console.log("pressed 'shift' and '1'");
-	});
 
-	// create SINGLE shortcut and DELETE already created shortcuts
-	// example:
-	viralShortcut.create('shift + 1', function () {
-		console.log("pressed 'shift' and '1'");
-	}, true);
-	```
+	* Create SINGLE shortcut
+	<br>
+	Syntax: viralShortcut.create(shortcutString, handlerFunction[, delete old shortcuts=false]);
+		```javascript
+		// create SINGLE shortcut and PRESERVE already created shortcuts
+		// example:
+		viralShortcut.create('shift + 1', function () {
+			console.log("pressed 'shift' and '1'");
+		});
+
+		// create SINGLE shortcut and DELETE already created shortcuts
+		// example:
+		viralShortcut.create('shift + 1', function () {
+			console.log("pressed 'shift' and '1'");
+		}, true);
+		```
 
 	* Create MULTIPLE shortcuts
+	<br>
 	  Syntax: viralShortcut.create(mapOfShortcutStringsAndHandlerFunctions[, delete old shortcuts=false]);
-	```javascript
-	// create MULTIPLE shortcuts and PRESERVE already created shortcuts
-	// example:
-	viralShortcut.create({
-		'q': function () {
-			console.log("pressed 'q'");
-		},
-		'alt+q': function () {
-			console.log("pressed 'alt' and 'q'");
-		},
-		'ctrl+q': function () {
-			console.log("pressed 'ctrl' and 'q'");
-		},
-		'shift+q': function () {
-			console.log("pressed 'shift' and 'q'");
-		}
-	});
+		```javascript
+		// create MULTIPLE shortcuts and PRESERVE already created shortcuts
+		// example:
+		viralShortcut.create({
+			'q': function () {
+				console.log("pressed 'q'");
+			},
+			'alt+q': function () {
+				console.log("pressed 'alt' and 'q'");
+			},
+			'ctrl+q': function () {
+				console.log("pressed 'ctrl' and 'q'");
+			},
+			'shift+q': function () {
+				console.log("pressed 'shift' and 'q'");
+			}
+		});
 
-	// create MULTIPLE shortcuts and DELETE already created shortcuts
-	// syntax: viralShortcut.create(mapOfShortcutStringsAndHandlerFunctions[, delete old shortcuts=false]);
-	// example:
-	viralShortcut.create({
-		'q': function () {
-			console.log("pressed 'q'");
-		},
-		'alt+q': function () {
-			console.log("pressed 'alt' and 'q'");
-		},
-		'ctrl+q': function () {
-			console.log("pressed 'ctrl' and 'q'");
-		},
-		'shift+q': function () {
-			console.log("pressed 'shift' and 'q'");
-		}
-	}, true);
-	```
+		// create MULTIPLE shortcuts and DELETE already created shortcuts
+		// syntax: viralShortcut.create(mapOfShortcutStringsAndHandlerFunctions[, delete old shortcuts=false]);
+		// example:
+		viralShortcut.create({
+			'q': function () {
+				console.log("pressed 'q'");
+			},
+			'alt+q': function () {
+				console.log("pressed 'alt' and 'q'");
+			},
+			'ctrl+q': function () {
+				console.log("pressed 'ctrl' and 'q'");
+			},
+			'shift+q': function () {
+				console.log("pressed 'shift' and 'q'");
+			}
+		}, true);
+		```
 
 2. **disable** - utility to disable all shortcuts, this will PRESERVE all created shortcuts and assigned handler functions
 	```javascript
