@@ -1,7 +1,15 @@
 # js-shortcut
 JavaScript utility for keyboard shortcuts.
 
-##Utility functions
+##How to use Shortcut.js
+* Download/Use latest Shortcut.js JavaScript utility. (Link to latest Shortcut.js: https://raw.githubusercontent.com/virallalakia/js-shortcut/master/dist/js/viral-shortcut-1.0.0.js)
+* Shortcut.js provides 3 utility functions:
+  * `viralShortcut.create()` - utility function to create new shortcuts
+  * `viralShortcut.disable()` - utility function to disable all shortcuts created with `Shortcut.js`
+  * `viralShortcut.enable()` - utility function to enable all shortcuts created with `Shortcut.js`
+
+
+##Utility functions (Syntax and Usage)
 1. **create** - utility to create shortcuts
 	<pre>
 	// create SINGLE shortcut
@@ -71,7 +79,3 @@ JavaScript utility for keyboard shortcuts.
 
 ## Demo page
 * **[Demo page on GitHub](https://virallalakia.github.io/js-shortcut/)**
-
-
-## Dependency
-* **[jQuery](https://jquery.com/)** - write less, do more

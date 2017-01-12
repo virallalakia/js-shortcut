@@ -1,53 +1,73 @@
+var $V = viralJsUtils;
 (function whirlpool() {
+	$V.documentReady(function() {
+		$V.append($V.select('body')[0], $V.parseHTML('<div class="whirlpool-cont"><div class="whirlpool"></div></div>')[0]);
+		var $whirlpoolCont = $V.select('.whirlpool-cont')[0];
+		var $whirlpool = $V.find($whirlpoolCont, '.whirlpool')[0];
+		$V.css($whirlpoolCont, {
+			'position': 'absolute',
+			'top': '0',
+			'left': '0',
+			'width': '0px',
+			'height': '0px',
+			'overflow': 'hidden'
+		});
+		$V.css($whirlpool, {
+			'position': 'absolute',
+			'top': '0',
+			'left': '0',
+			'width': '1px',
+			'height': '1px',
+			'border-radius': '50%',
+			'background': '#FFFFFF',
+			'opacity': '0',
+			'transform': 'scale(0)'
+		});
 
-	$('body').append('<div class="whirlpool-cont"><div class="whirlpool"></div></div>');
-	var $whirlpoolCont = $('.whirlpool-cont');
-	var $whirlpool = $whirlpoolCont.find('.whirlpool');
+		var timeoutHandler = function() {
+			$V.css($whirlpoolCont, {'width': 0, 'height': 0, 'left': 0, 'top': 0});
+			$V.css($whirlpool, {'transition': 'none', 'opacity': 0.4, 'transform': 'scale(0)'});
+		};
+		timeoutHandler();
 
-	$(document).off('click').on('click', function (e) {
-		var $target = $(e.target);
-		if (!$target.is('button')) {
-			return;
-		}
+		var documentClickHandler = function(e) {
+			var $target = e.target;
+			if (!$V.is($target, 'button')) {
+				return;
+			}
 
-		var targetOffset = $target.offset();
-		var targetTotalWidth = $target.outerWidth();
-		var targetTotalHeight = $target.outerHeight();
-		var scale = 2 * (targetTotalWidth >= targetTotalHeight ? targetTotalWidth : targetTotalHeight); 
-		var delay = (scale > 400 ? (scale <= 1000 ? scale : 1000) : 400);
+			var targetOffset = $V.offset($target);
+			var targetTotalWidth = $V.outerWidth($target);
+			var targetTotalHeight = $V.outerHeight($target);
+			var scale = 2.5 * (targetTotalWidth >= targetTotalHeight ? targetTotalWidth : targetTotalHeight); 
+			var delay = (scale > 400 ? (scale <= 800 ? scale : 800) : 400);
 
-		$whirlpoolCont.css({'width': targetTotalWidth, 'height': targetTotalHeight, 'left': targetOffset.left, 'top': targetOffset.top});
-		$whirlpool.css({'left': e.pageX - targetOffset.left, 'top': e.pageY - targetOffset.top});
-		$whirlpool.show(0);
-		$whirlpool.addClass('whirlpool-effect');
-		$whirlpool.css({'transform': 'scale(' + scale + ')'});
-		setTimeout(function() {
-			$whirlpool.hide(0);
-			$whirlpool.removeClass('whirlpool-effect');
-			$whirlpoolCont.css({'width': 0, 'height': 0, 'left': 0, 'top': 0});
-			$whirlpool.css({'transform': 'scale(0)'});
-		}, delay);
+			$V.css($whirlpoolCont, {'width': targetTotalWidth, 'height': targetTotalHeight, 'left': targetOffset.left, 'top': targetOffset.top});
+			$V.css($whirlpool, {'transition': 'opacity 0.5s ease-in-out 0s, transform 0.5s ease-in-out 0s', 'left': e.pageX - targetOffset.left, 'top': e.pageY - targetOffset.top, 'opacity': 0, 'transform': 'scale(' + scale + ')'});
+			setTimeout(timeoutHandler, delay);
+		};
 
-	});
-
-})();
-
-var showStatus = (function () {
-	var t;
-	var $status = $('#status');
-	return (function (text) {
-		clearTimeout(t);
-		$status.text(text);
-		$status.show(0);
-		t = setTimeout(function() {
-			$status.hide(0);
-			$status.text('');
-		}, 2000)
+		$V.off(document, 'click', documentClickHandler);
+		$V.on(document, 'click', documentClickHandler);
 	});
 })();
 
 function attachButtonEvents() {
-	$('#button-shortcut-q-all').off('click.vl-shortcut-js').on('click.vl-shortcut-js', function () {
+	var showStatus = (function () {
+		var t;
+		var $status = $V.select('#status')[0];
+		return (function (text) {
+			clearTimeout(t);
+			$V.text($status, text);
+			$V.show($status);
+			t = setTimeout(function() {
+				$V.hide($status);
+				$V.text($status, '');
+			}, 2000);
+		});
+	})();
+
+	var shortcutQAllHandler = function () {
 		viralShortcut.create({
 			'q': function () {
 				showStatus("pressed 'q'");
@@ -74,29 +94,44 @@ function attachButtonEvents() {
 				showStatus("pressed 'shift', 'alt', 'ctrl' and 'q'");
 			}
 		});
-	});
+	};
+	var $buttonShortcutQAll = $V.select('#button-shortcut-q-all')[0];
+	$V.off($buttonShortcutQAll, 'click', shortcutQAllHandler);
+	$V.on($buttonShortcutQAll, 'click', shortcutQAllHandler);
 
-	$('#button-shortcut-shift-1').off('click.vl-shortcut-js').on('click.vl-shortcut-js', function () {
+	var shortcutShift1Handler = function () {
 		viralShortcut.create('shift + 1', function () {
 			showStatus("pressed 'shift' and '1'");
 		});
-	});
+	};
+	var $buttonShortcutShift1 = $V.select('#button-shortcut-shift-1')[0];
+	$V.off($buttonShortcutShift1, 'click', shortcutShift1Handler);
+	$V.on($buttonShortcutShift1, 'click', shortcutShift1Handler);
 
-	$('#button-shortcut-clear-all-shift-2').off('click.vl-shortcut-js').on('click.vl-shortcut-js', function () {
+	var shortcutClearAllShift2Handler = function () {
 		viralShortcut.create('shift + 2', function () {
 			showStatus("pressed 'shift' and '2'");
 		}, true);
-	});
+	};
+	var $buttonShortcutClearAllShift2 = $V.select('#button-shortcut-clear-all-shift-2')[0];
+	$V.off($buttonShortcutClearAllShift2, 'click', shortcutClearAllShift2Handler);
+	$V.on($buttonShortcutClearAllShift2, 'click', shortcutClearAllShift2Handler);
 
-	$('#button-enable').off('click.vl-shortcut-js').on('click.vl-shortcut-js', function () {
+	var shortcutEnableHandler = function () {
 		viralShortcut.enable();
-	});
+	};
+	var $buttonShortcutEnable = $V.select('#button-enable')[0];
+	$V.off($buttonShortcutEnable, 'click', shortcutEnableHandler);
+	$V.on($buttonShortcutEnable, 'click', shortcutEnableHandler);
 
-	$('#button-disable').off('click.vl-shortcut-js').on('click.vl-shortcut-js', function () {
+	var shortcutDisableHandler = function () {
 		viralShortcut.disable();
-	});
+	};
+	var $buttonShortcutDisable = $V.select('#button-disable')[0];
+	$V.off($buttonShortcutDisable, 'click', shortcutDisableHandler);
+	$V.on($buttonShortcutDisable, 'click', shortcutDisableHandler);
 }
 
-$(document).ready(function() {
+$V.documentReady(function() {
 	attachButtonEvents();
 });
