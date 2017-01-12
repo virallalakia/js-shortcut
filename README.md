@@ -11,27 +11,28 @@ JavaScript utility for keyboard shortcuts.
 
 ##Utility functions (Syntax and Usage)
 1. **create** - utility to create shortcuts
-	```javascript
+	```
 	// create SINGLE shortcut
 	viralShortcut.create(shortcutString, handlerFunction[, delete old shortcuts=false]);
-
+	```
+	```javascript
 	// create SINGLE shortcut and PRESERVE already created shortcuts
 	// example:
 	viralShortcut.create('shift + 1', function () {
 		console.log("pressed 'shift' and '1'");
 	});
-	```
-	<pre>
 	// create SINGLE shortcut and DELETE already created shortcuts
 	// example:
 	viralShortcut.create('shift + 1', function () {
 		console.log("pressed 'shift' and '1'");
 	}, true);
-	</pre>
-	<pre>
+	```
+
+	```
 	// create MULTIPLE shortcuts
 	viralShortcut.create(mapOfShortcutStringsAndHandlerFunctions[, delete old shortcuts=false]);
-	<pre>
+	```
+	```javascript
 	// create MULTIPLE shortcuts and PRESERVE already created shortcuts
 	// example:
 	viralShortcut.create({
@@ -48,7 +49,6 @@ JavaScript utility for keyboard shortcuts.
 			console.log("pressed 'shift' and 'q'");
 		}
 	});
-	</pre><pre>
 	// create MULTIPLE shortcuts and DELETE already created shortcuts
 	// syntax: viralShortcut.create(mapOfShortcutStringsAndHandlerFunctions[, delete old shortcuts=false]);
 	// example:
@@ -66,17 +66,17 @@ JavaScript utility for keyboard shortcuts.
 			console.log("pressed 'shift' and 'q'");
 		}
 	}, true);
-	</pre></pre>
+	```
 
 2. **disable** - utility to disable all shortcuts, this will PRESERVE all created shortcuts and assigned handler functions
-	<pre>
+	```javascript
 	viralShortcut.disable();
-	</pre>
+	```
 
 3. **enable** - utility to enable all shortcuts, this will PRESERVE all created shortcuts and assigned handler functions
-	<pre>
+	```javascript
 	viralShortcut.enable();
-	</pre>
+	```
 
 ## Demo page
 * **[Demo page on GitHub](https://virallalakia.github.io/js-shortcut/)**
