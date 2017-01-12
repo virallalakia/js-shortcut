@@ -14,13 +14,13 @@ JavaScript utility for keyboard shortcuts.
 	```
 	// create SINGLE shortcut
 	viralShortcut.create(shortcutString, handlerFunction[, delete old shortcuts=false]);
-	```
 	```javascript
 	// create SINGLE shortcut and PRESERVE already created shortcuts
 	// example:
 	viralShortcut.create('shift + 1', function () {
 		console.log("pressed 'shift' and '1'");
 	});
+
 	// create SINGLE shortcut and DELETE already created shortcuts
 	// example:
 	viralShortcut.create('shift + 1', function () {
@@ -49,6 +49,7 @@ JavaScript utility for keyboard shortcuts.
 			console.log("pressed 'shift' and 'q'");
 		}
 	});
+
 	// create MULTIPLE shortcuts and DELETE already created shortcuts
 	// syntax: viralShortcut.create(mapOfShortcutStringsAndHandlerFunctions[, delete old shortcuts=false]);
 	// example:
