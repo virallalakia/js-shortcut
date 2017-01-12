@@ -13,8 +13,8 @@ JavaScript utility for keyboard shortcuts.
 1. **create** - utility to create shortcuts
 
 	* Create SINGLE shortcut
-	<br>
-	Syntax: viralShortcut.create(shortcutString, handlerFunction[, delete old shortcuts=false]);
+	  <br>
+	  Syntax: `viralShortcut.create(shortcutString, handlerFunction[, delete old shortcuts=false]);`
 		```javascript
 		// create SINGLE shortcut and PRESERVE already created shortcuts
 		// example:
@@ -30,8 +30,8 @@ JavaScript utility for keyboard shortcuts.
 		```
 
 	* Create MULTIPLE shortcuts
-	<br>
-	  Syntax: viralShortcut.create(mapOfShortcutStringsAndHandlerFunctions[, delete old shortcuts=false]);
+	  <br>
+	  Syntax: `viralShortcut.create(mapOfShortcutStringsAndHandlerFunctions[, delete old shortcuts=false]);`
 		```javascript
 		// create MULTIPLE shortcuts and PRESERVE already created shortcuts
 		// example:
@@ -51,7 +51,6 @@ JavaScript utility for keyboard shortcuts.
 		});
 
 		// create MULTIPLE shortcuts and DELETE already created shortcuts
-		// syntax: viralShortcut.create(mapOfShortcutStringsAndHandlerFunctions[, delete old shortcuts=false]);
 		// example:
 		viralShortcut.create({
 			'q': function () {
