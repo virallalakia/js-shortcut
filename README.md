@@ -12,8 +12,8 @@ JavaScript utility for keyboard shortcuts.
 ##Utility functions (Syntax and Usage)
 1. **create** - utility to create shortcuts
 	```
-	// create SINGLE shortcut
-	viralShortcut.create(shortcutString, handlerFunction[, delete old shortcuts=false]);
+	* Create SINGLE shortcut
+	  Syntax: viralShortcut.create(shortcutString, handlerFunction[, delete old shortcuts=false]);
 	```javascript
 	// create SINGLE shortcut and PRESERVE already created shortcuts
 	// example:
@@ -28,10 +28,8 @@ JavaScript utility for keyboard shortcuts.
 	}, true);
 	```
 
-	```
-	// create MULTIPLE shortcuts
-	viralShortcut.create(mapOfShortcutStringsAndHandlerFunctions[, delete old shortcuts=false]);
-	```
+	* Create MULTIPLE shortcuts
+	  Syntax: viralShortcut.create(mapOfShortcutStringsAndHandlerFunctions[, delete old shortcuts=false]);
 	```javascript
 	// create MULTIPLE shortcuts and PRESERVE already created shortcuts
 	// example:
