@@ -88,6 +88,23 @@ button:focus {
 	clear: both;
 }
 
+.outer-container {
+	width: 90%;
+	min-width: 320px;
+	margin: 0 auto;
+}
+.header-container {
+	width: 90%;
+	min-width: 320px;
+	padding: 10px 0 10px 0;
+}
+.main-container {
+	width: 90%;
+	min-width: 320px;
+	text-align: center;
+	margin: 30px auto 0 auto;
+}
+
 .logo-text {
 	width: 130px;
 	font-weight: bold;
@@ -135,6 +152,9 @@ button:focus {
 	text-align: justify;
 	cursor: default;
 }
+.header-link-container.download-container .info {
+	width: 360px;
+}
 .header-link-container:hover .info {
 	display: block;
 }
@@ -164,21 +184,10 @@ button:focus {
 	background: rgba(0, 0, 0, 0.8);
 }
 
-.outer-container {
-	width: 90%;
-	min-width: 320px;
-	margin: 0 auto;
-}
-.header-container {
-	width: 90%;
-	min-width: 320px;
-	padding: 10px 0 10px 0;
-}
-.main-container {
-	width: 90%;
-	min-width: 320px;
-	text-align: center;
-	margin: 30px auto 0 auto;
+.main-header-container {
+	margin: 0 auto 30px;
+	font-size: 28px;
+	font-weight: bold;
 }
 
 #status {
