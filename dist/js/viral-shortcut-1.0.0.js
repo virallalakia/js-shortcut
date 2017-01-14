@@ -1,3 +1,11 @@
+/*!
+ * js-shortcut - JavaScript Utility - a ViralProject piece
+ * https://github.com/virallalakia/js-shortcut
+ * Copyright (c) Viral Lalakia
+ * MIT License
+ * https://github.com/virallalakia/js-shortcut/blob/master/LICENSE
+ */
+
 var viralJsUtils = viralJsUtils || {};
 
 (function() {
