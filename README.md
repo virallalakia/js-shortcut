@@ -5,8 +5,9 @@ JavaScript utility for keyboard shortcuts.
 * Download latest js-shortcut - JavaScript utility.
   * [The compressed, production viral-shortcut-1.0.0](https://cdn.rawgit.com/virallalakia/js-shortcut/master/dist/js/viral-shortcut-1.0.0.min.js)
   * [The uncompressed, development viral-shortcut-1.0.0](https://cdn.rawgit.com/virallalakia/js-shortcut/master/dist/js/viral-shortcut-1.0.0.js)
-* viral-shortcut.js provides 3 utility functions:
+* viral-shortcut.js provides 4 utility functions:
   * `viralShortcut.create()` - utility function to create new shortcuts
+  * `viralShortcut.options()` - utility function to get/set options for `viral-shortcut.js`
   * `viralShortcut.disable()` - utility function to disable all shortcuts created with `viral-shortcut.js`
   * `viralShortcut.enable()` - utility function to enable all shortcuts created with `viral-shortcut.js`
 
@@ -70,12 +71,38 @@ JavaScript utility for keyboard shortcuts.
 		}, true);
 		```
 
-2. **disable** - utility to disable all shortcuts, this will PRESERVE all created shortcuts and assigned handler functions
+2. **options** - utility function to get/set options for viral-shortcut.js
+
+	* get options
+	  <br>
+	  Syntax: `viralShortcut.options();`
+		```javascript
+		// get options for viral-shortcut.js
+		// example:
+		var viralShortcutOptions = viralShortcut.options();
+		// sample returned options object:
+		{
+			'elemSelectorToSkip': ''
+		}
+		```
+
+	* set options
+	  <br>
+	  Syntax: `viralShortcut.options(options);`
+		```javascript
+		// set options for viral-shortcut.js
+		// example:
+		viralShortcut.options({
+			'elemSelectorToSkip': 'input[type="text"], textarea'
+		});
+		```
+
+3. **disable** - utility to disable all shortcuts, this will PRESERVE all created shortcuts and assigned handler functions
 	```javascript
 	viralShortcut.disable();
 	```
 
-3. **enable** - utility to enable all shortcuts, this will PRESERVE all created shortcuts and assigned handler functions
+4. **enable** - utility to enable all shortcuts, this will PRESERVE all created shortcuts and assigned handler functions
 	```javascript
 	viralShortcut.enable();
 	```
