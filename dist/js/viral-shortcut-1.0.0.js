@@ -285,12 +285,12 @@ var viralJsUtils = viralJsUtils || {};
 	$V['on'] = function($el, eventName, eventHandler) {
 		$el.addEventListener(eventName, eventHandler);
 	};
-	$V['trigger'] = function(eventName) {
+	$V['trigger'] = function($el, eventName) {
 		var event = document.createEvent('HTMLEvents');
 		event.initEvent(eventName, true, false);
 		$el.dispatchEvent(event);
 	};
-	$V['triggerCustom'] = function(eventName, eventData) {
+	$V['triggerCustom'] = function($el, eventName, eventData) {
 		if(CustomEvent) {
 			var event = new CustomEvent(eventName, {
 				detail: eventData
