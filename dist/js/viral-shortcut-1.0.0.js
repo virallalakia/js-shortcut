@@ -8,12 +8,16 @@
 
 var viralJsUtils = viralJsUtils || {};
 
-(function() {
-	var $V = viralJsUtils;
-
+(function($V) {
 	// utils
 	$V['type'] = function(obj) {
+		if (typeof (obj) === "undefined") {
+			return ("undefined");
+		}
 		return (Object.prototype.toString.call(obj).replace(/^\[object (.+)\]$/, '$1').toLowerCase());
+	};
+	$V['trim'] = function(str) {
+		return (str.trim());
 	};
 	$V['indexOf'] = function(item, array) {
 		return (array.indexOf(item));
@@ -23,6 +27,42 @@ var viralJsUtils = viralJsUtils || {};
 	};
 	$V['map'] = function(array, fn) {
 		array.map(fn);
+	};
+	$V['parseJSON'] = function(str) {
+		return (JSON.parse(str));
+	};
+	$V['stringifyJSON'] = function(obj) {
+		return (JSON.stringify(obj));
+	};
+	$V['extend'] = function(p1, p2) {
+		var deepExtend = false;
+		var outObj = {};
+		var startArgNo = 1;
+		if($V.type(p1) === 'boolean') {
+			deepExtend = p1;
+			outObj = p2 || outObj;
+			startArgNo = 2;
+		} else {
+			deepExtend = false;
+			outObj = p1 || outObj;
+			startArgNo = 1;
+		}
+		for (var i = startArgNo; i < arguments.length; i++) {
+			var obj = arguments[i];
+			if (!obj || $V.type(obj) !== 'object') {
+				continue;
+			}
+			for (var key in obj) {
+				if (obj.hasOwnProperty(key)) {
+					if (deepExtend && $V.type(obj[key]) === 'object') {
+						outObj[key] = $V.extend(true, outObj[key], obj[key]);
+					} else {
+						outObj[key] = obj[key];
+					}
+				}
+			}
+		}
+		return outObj;
 	};
 
 	// iterators
@@ -178,7 +218,7 @@ var viralJsUtils = viralJsUtils || {};
 		if ($el.classList) {
 			return ($el.classList.contains(className));
 		} else {
-			return (new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className));
+			return (new RegExp('(^| )' + className + '( |$)', 'gi').test($el.className));
 		}
 	};
 	$V['toggleClass'] = function($el, className) {
@@ -248,7 +288,7 @@ var viralJsUtils = viralJsUtils || {};
 	$V['trigger'] = function(eventName) {
 		var event = document.createEvent('HTMLEvents');
 		event.initEvent(eventName, true, false);
-		el.dispatchEvent(event);
+		$el.dispatchEvent(event);
 	};
 	$V['triggerCustom'] = function(eventName, eventData) {
 		if(CustomEvent) {
@@ -259,13 +299,19 @@ var viralJsUtils = viralJsUtils || {};
 			var event = document.createEvent('CustomEvent');
 			event.initCustomEvent(eventName, true, true, eventData);
 		}
-		el.dispatchEvent(event);
+		$el.dispatchEvent(event);
 	};
-})();
+})(viralJsUtils);
 
 var viralShortcut = (function ($V) {
 
 	// private
+	var _default = {
+		'elemSelectorToSkip': ''
+	};
+
+	var _options = $V.extend(true, {}, _default);
+
 	var __m_keyCodeMap = {
 		'backspace': 8,
 		'tab': 9,
@@ -273,17 +319,17 @@ var viralShortcut = (function ($V) {
 		'shift': 16,
 		'ctrl': 17,
 		'alt': 18,
-		'pause/break': 19,
-		'caps lock': 20,
+		'break': 19,
+		'capsLock': 20,
 		'escape': 27,
-		'page up': 33,
-		'page down': 34,
+		'pageUp': 33,
+		'pageDown': 34,
 		'end': 35,
 		'home': 36,
-		'left arrow': 37,
-		'up arrow': 38,
-		'right arrow': 39,
-		'down arrow': 40,
+		'leftArrow': 37,
+		'upArrow': 38,
+		'rightArrow': 39,
+		'downArrow': 40,
 		'insert': 45,
 		'delete': 46,
 		'0': 48,
@@ -322,24 +368,24 @@ var viralShortcut = (function ($V) {
 		'x': 88,
 		'y': 89,
 		'z': 90,
-		'left window key': 91,
-		'right window key': 92,
-		'select key': 93,
-		'numpad 0': 96,
-		'numpad 1': 97,
-		'numpad 2': 98,
-		'numpad 3': 99,
-		'numpad 4': 100,
-		'numpad 5': 101,
-		'numpad 6': 102,
-		'numpad 7': 103,
-		'numpad 8': 104,
-		'numpad 9': 105,
+		'leftWindowKey': 91,
+		'rightWindowKey': 92,
+		'contextMenuKey': 93,
+		'numpad0': 96,
+		'numpad1': 97,
+		'numpad2': 98,
+		'numpad3': 99,
+		'numpad4': 100,
+		'numpad5': 101,
+		'numpad6': 102,
+		'numpad7': 103,
+		'numpad8': 104,
+		'numpad9': 105,
 		'multiply': 106,
-		'add': 107,
-		'subtract': 109,
-		'decimal point': 110,
-		'divide': 111,
+		'numpadAdd': 107,
+		'numpadSubtract': 109,
+		'numpad.': 110,
+		'numpad/': 111,
 		'f1': 112,
 		'f2': 113,
 		'f3': 114,
@@ -352,12 +398,12 @@ var viralShortcut = (function ($V) {
 		'f10': 121,
 		'f11': 122,
 		'f12': 123,
-		'num lock': 144,
-		'scroll lock': 145,
-		';': 186,
-		'=': 187,
+		'numLock': 144,
+		'scrollLock': 145,
+		';': 59,
+		'=': 61,
 		',': 188,
-		'dash': 189,
+		'dash': 173,
 		'.': 190,
 		'/': 191,
 		'`': 192,
@@ -370,6 +416,11 @@ var viralShortcut = (function ($V) {
 
 	var precessKeyupEvent = function (e) {
 		try {
+			var $target = e.target;
+			if (_options['elemSelectorToSkip'] && $V.is($target, _options['elemSelectorToSkip'])) {
+				return;
+			}
+
 			var keyCode = e.which;
 			keyCode += (e.shiftKey ? 1000000 : 0);
 			keyCode += (e.ctrlKey  ?  100000 : 0);
@@ -442,6 +493,14 @@ var viralShortcut = (function ($V) {
 		enable();
 	};
 
+	var options = function(p1) {
+		if($V.type(p1) === 'object') {
+			_options = $V.extend(true, _options, p1);
+		} else {
+			return ($V.extend(true, {}, _options));
+		}
+	};
+
 	var disable = function () {
 		$V.off(document, 'keyup', precessKeyupEvent);
 	};
@@ -453,6 +512,7 @@ var viralShortcut = (function ($V) {
 
 	return {
 		'create': updateBindings,
+		'options': options,
 		'disable': disable,
 		'enable': enable
 	};

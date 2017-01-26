@@ -64,6 +64,24 @@
 		$V.off($buttonShortcutClearAllShift2, 'click', shortcutClearAllShift2Handler);
 		$V.on($buttonShortcutClearAllShift2, 'click', shortcutClearAllShift2Handler);
 
+		var shortcutSetOptionsHandler = function () {
+			viralShortcut.options({
+				'elemSelectorToSkip': 'button'
+			});
+		};
+		var $buttonShortcutSetOptions = $V.select('#button-shortcut-set-options')[0];
+		$V.off($buttonShortcutSetOptions, 'click', shortcutSetOptionsHandler);
+		$V.on($buttonShortcutSetOptions, 'click', shortcutSetOptionsHandler);
+
+		var shortcutResetOptionsHandler = function () {
+			viralShortcut.options({
+				'elemSelectorToSkip': ''
+			});
+		};
+		var $buttonShortcutResetOptions = $V.select('#button-shortcut-reset-options')[0];
+		$V.off($buttonShortcutResetOptions, 'click', shortcutResetOptionsHandler);
+		$V.on($buttonShortcutResetOptions, 'click', shortcutResetOptionsHandler);
+
 		var shortcutEnableHandler = function () {
 			viralShortcut.enable();
 		};
