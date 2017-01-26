@@ -117,7 +117,7 @@ Below are the key codes for each key. Use `+` to use key combinations for shortc
 * `alt`: alter key
 * `break`: break key
 * `escape`: escape key
-* `` `: back-tick key
+* `` ` ``: back-tick key
 * `insert`: insert key
 * `delete`: delete key
 * `capsLock`: caps lock key
