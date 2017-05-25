@@ -1,7 +1,7 @@
 # js-shortcut
 JavaScript utility for keyboard shortcuts.
 
-##How to use viral-shortcut.js
+## How to use viral-shortcut.js
 * Download latest js-shortcut - JavaScript utility.
   * [The compressed, production viral-shortcut-1.0.0](https://cdn.rawgit.com/virallalakia/js-shortcut/master/dist/js/viral-shortcut-1.0.0.min.js)
   * [The uncompressed, development viral-shortcut-1.0.0](https://cdn.rawgit.com/virallalakia/js-shortcut/master/dist/js/viral-shortcut-1.0.0.js)
@@ -12,7 +12,7 @@ JavaScript utility for keyboard shortcuts.
   * `viralShortcut.enable()` - utility function to enable all shortcuts created with `viral-shortcut.js`
 
 
-##Utility functions (Syntax and Usage)
+## Utility functions (Syntax and Usage)
 1. **create** - utility to create shortcuts
 
 	* Create SINGLE shortcut
@@ -107,7 +107,7 @@ JavaScript utility for keyboard shortcuts.
 	viralShortcut.enable();
 	```
 
-##Shortcut codes for viral-shortcut.js
+## Shortcut codes for viral-shortcut.js
 Below are the key codes for each key. Use `+` to use key combinations for shortcut (e.g. `'alt+1'`, `'ctrl + alt + delete'`).
 * `backspace`: backspace key
 * `tab`: tab key
