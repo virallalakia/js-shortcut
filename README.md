@@ -1,6 +1,7 @@
 # js-shortcut
 JavaScript utility for keyboard shortcuts.
 
+
 ## How to use viral-shortcut.js
 * Download latest js-shortcut - JavaScript utility.
   * [The compressed, production viral-shortcut-1.0.0](https://cdn.rawgit.com/virallalakia/js-shortcut/master/dist/js/viral-shortcut-1.0.0.min.js)
@@ -10,6 +11,10 @@ JavaScript utility for keyboard shortcuts.
   * `viralShortcut.options()` - utility function to get/set options for `viral-shortcut.js`
   * `viralShortcut.disable()` - utility function to disable all shortcuts created with `viral-shortcut.js`
   * `viralShortcut.enable()` - utility function to enable all shortcuts created with `viral-shortcut.js`
+
+
+## Demo
+[Demo page on GitHub](https://virallalakia.github.io/js-shortcut/)
 
 
 ## Utility functions (Syntax and Usage)
@@ -207,7 +212,3 @@ Below are the key codes for each key. Use `+` to use key combinations for shortc
 * `f10`: f10 function key
 * `f11`: f11 function key
 * `f12`: f12 function key
-
-
-## Demo page
-* **[Demo page on GitHub](https://virallalakia.github.io/js-shortcut/)**
